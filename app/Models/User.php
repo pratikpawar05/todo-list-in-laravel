@@ -27,10 +27,10 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    // protected $hidden = [
+    //     'password',
+    //     'remember_token',
+    // ];
 
     /**
      * The attributes that should be cast to native types.
@@ -40,4 +40,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    //Mutator 
+    public function setpasswordAttribute($password)
+    {
+        # code...
+        $this->attributes['password']=bcrypt($password);
+    }
+    //Accessor
+    public function getNameAttribute($name)
+    {
+        # code..
+         return 'MY Name is:'.ucfirst($name);
+    }
 }
