@@ -15,6 +15,11 @@ use App\Http\Requests;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	//return env('APP_NAME');
+   return view('welcome');
 });
 Route::get('/users', 'App\Http\Controllers\UserController@index');
+Route::post('/upload','App\Http\Controllers\UserController@uploadAvatar');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

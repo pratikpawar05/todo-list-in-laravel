@@ -9,6 +9,19 @@ use App\Models\User;
 class UserController extends Controller
 {
     //
+    public function uploadAvatar(Request $request)
+    {
+    	# code...
+    	if ($request->hasFile('image')) {
+    		$filename=$request->image->getClientOriginalName();
+    		# code...
+    	
+    	//Request::file('image')->store('images','public');
+    	$request->image->storeAS('images',$filename,'public');
+    	User::find(1)->update(['avatar'=>'asdfsd']);
+}
+		return redirect()->back();
+    }
     public function index()
     {
     	# code...

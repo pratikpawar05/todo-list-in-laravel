@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar',
     ];
 
     /**
@@ -41,15 +42,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     //Mutator 
-    public function setpasswordAttribute($password)
-    {
+    // public function setpasswordAttribute($password)
+    // {
         # code...
-        $this->attributes['password']=bcrypt($password);
-    }
-    //Accessor
-    public function getNameAttribute($name)
-    {
-        # code..
-         return 'MY Name is:'.ucfirst($name);
-    }
+    //     $this->attributes['password']=bcrypt($password);
+    // }
+    // //Accessor
+    // public function getNameAttribute($name)
+    // {
+    //     # code..
+    //      return 'MY Name is:'.ucfirst($name);
+    // }
 }
