@@ -41,6 +41,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public static function uploadAvatar($image)
+    {
+        # code...
+        $filename=$image->getClientOriginalName();
+            # code..
+        //Request::file('image')->store('images','public');
+        (new self())->deleteOldImage();
+        $image->storeAS('images',$filename,'public');
+        //User::find(1)->update(['avatar'=>'asdfsd']);
+        auth()->user()->update(['avatar'=>$filename]);
+   }
+    protected function deleteOldImage()
+    {
+        # code...
+        if ($this->avatar) {
+                # code...
+                Storage::delete('/public/images/'.$this->avatar);
+            }
+    }
     //Mutator 
     // public function setpasswordAttribute($password)
     // {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Storage;
 
 class UserController extends Controller
 {
@@ -13,14 +14,13 @@ class UserController extends Controller
     {
     	# code...
     	if ($request->hasFile('image')) {
-    		$filename=$request->image->getClientOriginalName();
     		# code...
-    	
-    	//Request::file('image')->store('images','public');
-    	$request->image->storeAS('images',$filename,'public');
-    	User::find(1)->update(['avatar'=>'asdfsd']);
-}
-		return redirect()->back();
+    		User::uploadAvatar($request->image);
+    		//$request->session()->flash('message','Image Uploaded.');
+    		return redirect()->back()->with('message','Image Uploaded.');
+    	}
+    	//$request->session()->flash('error','Image Not Uploaded.');
+		return redirect()->back()->with('error','Image Not Uploaded.');
     }
     public function index()
     {
@@ -52,4 +52,5 @@ class UserController extends Controller
 		// return $users;
     	return view('home');
     }
+    
 }
