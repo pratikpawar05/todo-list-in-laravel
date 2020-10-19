@@ -13,7 +13,10 @@ use App\Http\Requests;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/todos', 'App\Http\Controllers\TodoController@index');
+Route::get('/todos/create', 'App\Http\Controllers\TodoController@create');
+Route::get('/todos/edit', 'App\Http\Controllers\TodoController@edit');
+Route::post('/todos/create','App\Http\Controllers\TodoController@store');
 Route::get('/', function () {
 	//return env('APP_NAME');
    return view('welcome');

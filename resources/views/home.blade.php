@@ -18,8 +18,10 @@
                 </div>
                 <div class="card-body">
                 	
-                	@include('layouts.flash')
-
+                	<!-- @include('layouts.flash') -->
+                	<x-alert >
+                		<p>Here is responce form image upload</p>
+                	</x-alert>
                    <form action="/upload" method="post" enctype="multipart/form-data">
                    	@csrf
                    	<input type="file" name="image"/>
