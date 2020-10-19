@@ -14,7 +14,10 @@ class TodoController extends Controller
     public function index()
     {
     	# code...
-    	return view('todos.index');
+    	$todos=Todo::all();
+    	//return $todos;
+    	//return view('todos.index')->with(['todos'=>$todos]);
+    	return view('todos.index',compact('todos'));
     }
 
 public function create()
@@ -23,10 +26,12 @@ public function create()
     	return view('todos.create');
     }
 
-public function edit()
+public function edit(Todo $todo)
     {
     	# code...
-    	return view('todos.edit');
+    	//$todo=Todo::find($id);
+    	//dd($todo->title);
+    	return view('todos.edit',compact('todo'));
     }
     public function store(TodoCreateRequest $request)
     {
@@ -53,4 +58,10 @@ public function edit()
     	Todo::create($request->all());
     	return redirect()->back()->with('message','Todo Created Sucessfully');
     }
+    public function update(TodoCreateRequest $request, Todo $todo)
+    {
+    		//update todo
+		$todo->update(['title'=>$request->title]);
+		return redirect(route('todo.index'))->with('message','Updated');
+		    }
 }
