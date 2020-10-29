@@ -18,6 +18,8 @@ Route::get('/todos/create', 'App\Http\Controllers\TodoController@create');
 Route::get('/todos/{todo}/edit', 'App\Http\Controllers\TodoController@edit');
 Route::post('/todos/create','App\Http\Controllers\TodoController@store');
 Route::patch('/todos/{todo}/update','App\Http\Controllers\TodoController@update')->name('todo.update');
+Route::put('/todos/{todo}/complete','App\Http\Controllers\TodoController@complete')->name('todo.complete');
+Route::put('/todos/{todo}/incomplete','App\Http\Controllers\TodoController@incomplete')->name('todo.incomplete');
 Route::get('/', function () {
 	//return env('APP_NAME');
    return view('welcome');
